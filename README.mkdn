@@ -1,0 +1,16 @@
+Greetings
+=========
+Prelude
+-----
+So this dude named Arthur at my ex-PHP workplace is a game dev. I was jealous that he can do 3d stuff and all those fun shenanigans, yet I can't.
+
+So I decided...
+---------------
+So I decided to make my damn awesome moving cursor. Currently it's moving, I'm quite happy with that.
+
+Critique
+--------
+The physics incomplete and shitty, there is no lighting of any kind, I don't even have colours or textures for my models. Pathetic.
+
+
+*note: don't expect this to be anything, ever*
