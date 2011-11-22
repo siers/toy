@@ -2,20 +2,19 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <string>
+#include <string.h>
 
 #include "models.h"
-#include "timer.h"
 #include "log.h"
 
-extern Timer timer;
-
 Model::Model(const char* name)
+    : visible(1)
 {
     std::stringstream stream;
     stream << "models/" << name << ".bin";
     std::string path;
     stream >> path;
+    face *f;
     int i;
 
     std::ifstream data(path.c_str(), std::ios::in);
@@ -23,7 +22,7 @@ Model::Model(const char* name)
     assert(!data.fail(), "Couldn't locate model: %s", name);
 
     while (data.good()) {
-        face *f = new face;
+        f = new face;
         if (!data.read(&f->verts, sizeof(f->verts))) {
             break;
         }
@@ -44,7 +43,6 @@ Model::Model(const char* name)
     memset(t, 0, sizeof(t));
     memset(r, 0, sizeof(r));
     angle = 0;
-    visible = 1;
 }
 
 void
@@ -53,8 +51,6 @@ Model::render()
     std::list<void*>::iterator it;
     face *f;
     int i, verts;
-    static int frame;
-    frame++;
 
     if (!visible)
         return;

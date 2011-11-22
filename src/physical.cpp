@@ -7,10 +7,8 @@
 #define DEG2RAD M_PI / 180
 
 PhysicalModel::PhysicalModel(const char* name)
-    : Model(name)
+    : Model(name), friction(0.9)
 {
-    friction = 0.8;
-
     // Initialize vectors.
     memset((void*) buf, 0, sizeof(buf));
 }
