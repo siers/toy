@@ -3,7 +3,10 @@ CXXFLAGS=-Wall -g3 -I/usr/include/libdrm -I/usr/include/GL -D_GNU_SOURCE=1 -D_RE
 LDFLAGS=-lSDL -lGLU -lGL -lpthread
 OBJ=bin/log.o bin/timer.o bin/models.o bin/physical.o bin/vehicle.o bin/logic.o bin/scene.o bin/camera.o bin/main.o
 
-all: bin/main
+all: bin bin/main
+
+bin:
+	mkdir -p bin
 
 bin/%.o: src/%.cpp
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
