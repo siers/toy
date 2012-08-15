@@ -1,9 +1,7 @@
 #include "scene.h"
 #include "log.h"
+#include "camera.h"
 
-// not for staying
-#include "models.h"
-extern Model m;
 extern Timer timer;
 
 static void
@@ -71,6 +69,23 @@ Scene::init_gl()
 }
 
 void
+Scene::draw_floor()
+{
+    static int
+        size = 5,
+        depth = -10.5;
+
+    glLoadIdentity();
+    glBegin(GL_QUADS);
+    glColor3f(.3, .3, .3);
+    glVertex3f(-size, -size, depth);
+    glVertex3f(size, -size, depth);
+    glVertex3f(size, size, depth);
+    glVertex3f(-size, size, depth);
+    glEnd();
+}
+
+void
 Scene::run()
 {
     SDL_Event event;
@@ -105,13 +120,9 @@ Scene::run()
         glClearColor(1, 1, 1, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // To be replaced with camera class.
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glFrustum(-2, 2, -2, 2, 1, 1000.);
-
         logic.draw_frame();
-
+        draw_floor();
+        Camera::position(logic.v);
         SDL_GL_SwapBuffers();
 
         timer.wait();

@@ -13,6 +13,7 @@ class Scene {
 
         int video_flags;
         void init_gl();
+        void draw_floor();
     public:
         Timer timer;
 

@@ -24,6 +24,6 @@ void PhysicalModel::tick()
         t[i] += v[i];
     }
 
-    av = (av + aa) * friction;
+    av = (av + aa * 5 * a[X]) * friction;
     angle += av;
 }

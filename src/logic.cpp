@@ -3,6 +3,8 @@
 
 Logic::Logic()
 {
+    m = new Model("vehicle");
+    m->t[Z] = -10;
     v.t[Z] = -10;
     v.friction = 0.9;
     v.r[Z] = 1;
@@ -52,4 +54,5 @@ void Logic::draw_frame()
 {
     v.tick();
     v.render();
+    m->render();
 }
